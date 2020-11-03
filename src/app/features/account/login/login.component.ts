@@ -21,7 +21,7 @@ user: AuthenticateUserModel = {};
   }
 
   loginClick(){
-    if(!this.user.email || this.user.password){
+    if(!this.user.email || !this.user.password){
       this.messageService.add({severity: 'error', detail: 'enter all fields', summary: 'Error'})
     }
     this.login();

@@ -25,7 +25,8 @@
 
             <div class="input-wrapper">
                 <span class="p-float-label">
-                    <input id="password" type="password" pInputText [(ngModel)]="user.password" name="password" required>
+                    <input id="password" type="password" pInputText [(ngModel)]="user.password" name="password"
+                        required>
                     <label for="password">Password</label>
                 </span>
             </div>
@@ -39,16 +40,15 @@
             </div>
 
             <div class="btn-wrapper">
-                <button pButton pRipple type="button" label="Register" (click)="registerClick()"
-                [disabled]="registerForm.invalid"></button>
+                <button pButton pRipple type="submit" label="Register" (click)="registerClick()"
+                    [disabled]="registerForm.invalid"></button>
             </div>
 
             <div class="href-wrapper">
-                <a href="./account/login"> Already have an account?</a>
+                <a routerLink="/account/login"> Already have an account?</a>
             </div>
 
         </div>
 
     </div>
 </form>
-

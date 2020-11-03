@@ -30,7 +30,7 @@ export class HttpService {
     private getQueryParams(filter: any): URLSearchParams {
         const params = new URLSearchParams();
 
-        for (let field of filter) {
+        for (let field in filter) {
             params.set(field, filter[field])
         }
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { RegisterUserModel } from 'src/app/models/authenticate-user.model';
 import { User } from 'src/app/models/user';
-import { AccountService } from '../accunt.service';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-registration',
@@ -15,7 +16,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private readonly accountService: AccountService,
-    private readonly messageService: MessageService) { }
+    private readonly messageService: MessageService,
+    private readonly router: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,12 +34,8 @@ export class RegistrationComponent implements OnInit {
   registerUser() {
     this.accountService.registerUser(this.user).subscribe(
       response => {
-        
-
+        this.router.navigate(['account', 'login']);
       }
     )
   }
-
-
-
 }

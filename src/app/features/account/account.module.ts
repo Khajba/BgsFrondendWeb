@@ -3,15 +3,13 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AccountService } from './accunt.service';
-
-
-
+import { AccountService } from './account.service';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegistrationComponent],
+    RegistrationComponent
+  ],
   imports: [
     AccountRoutingModule,
     SharedModule
@@ -19,6 +17,5 @@ import { AccountService } from './accunt.service';
   providers: [
     AccountService
   ]
-
 })
 export class AccountModule { }

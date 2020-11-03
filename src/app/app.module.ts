@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthorizationModule } from './core/authorization/authorization.module';
 import { SharedModule } from './shared/shared.module';
 import {BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {BrowserAnimationsModule } from '@angular/platform-browser/animations'
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
       multi: true
-    }
+    },
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
