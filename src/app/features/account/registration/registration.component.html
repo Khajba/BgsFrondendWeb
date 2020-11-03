@@ -1,1 +1,54 @@
+<form #registerForm="ngForm">
+    <div class="content">
+        <div class="register-wrapper">
+
+            <div class="input-wrapper">
+                <span class="p-float-label">
+                    <input id="email" type="text" pInputText [(ngModel)]="user.email" name="email" required>
+                    <label for="email">Email</label>
+                </span>
+            </div>
+
+            <div class="input-wrapper">
+                <span class="p-float-label">
+                    <input id="firstname" type="text" pInputText [(ngModel)]="user.firstname" name="firstname" required>
+                    <label for="firstname">Firstname</label>
+                </span>
+            </div>
+
+            <div class="input-wrapper">
+                <span class="p-float-label">
+                    <input id="lastname" type="text" pInputText [(ngModel)]="user.lastname" name="lastname" required>
+                    <label for="lastname">Lastname</label>
+                </span>
+            </div>
+
+            <div class="input-wrapper">
+                <span class="p-float-label">
+                    <input id="password" type="password" pInputText [(ngModel)]="user.password" name="password" required>
+                    <label for="password">Password</label>
+                </span>
+            </div>
+
+            <div class="input-wrapper">
+                <span class="p-float-label">
+                    <input id="repeatPassword" type="password" pInputText [(ngModel)]="user.repeatPassword"
+                        name="repeatPassword" required>
+                    <label for="repeatPassword">Repeat Password</label>
+                </span>
+            </div>
+
+            <div class="btn-wrapper">
+                <button pButton pRipple type="button" label="Register" (click)="registerClick()"
+                [disabled]="registerForm.invalid"></button>
+            </div>
+
+            <div class="href-wrapper">
+                <a href="./account/login"> Already have an account?</a>
+            </div>
+
+        </div>
+
+    </div>
+</form>
 

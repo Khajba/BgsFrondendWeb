@@ -8,7 +8,7 @@ import { HttpService } from '../http/http.service';
 import { AuthUserModel, JsonWebToken } from './authentification-response.model';
 import { map } from 'rxjs/operators'
 
-const apiBaseUrl = "http://localhost:64764/api/account";
+const apiBaseUrl = "http://localhost:56902/api/account";
 
 @Injectable()
 export class AuthorizationService {

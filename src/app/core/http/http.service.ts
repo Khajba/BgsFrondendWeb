@@ -22,7 +22,7 @@ export class HttpService {
 
     post<TData>(url: string, body: any, showDefaultMessage?: boolean) {
         return this.httpClient
-            .get<TData>(url, body)
+            .post<TData>(url, body)
             .pipe(map(response => this.handleResponse(response, showDefaultMessage)))
     }
 

@@ -6,7 +6,7 @@ import { HttpRequestInterceptor } from './core/http/http-request.intercaptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthorizationModule } from './core/authorization/authorization.module';
 import { SharedModule } from './shared/shared.module';
-
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     AuthorizationModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
