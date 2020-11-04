@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
+import { async } from '@angular/core/testing';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginAuthGuard } from './core/authorization/auth.guard';
+import { AuthorizationGuard, LoginAuthGuard } from './core/authorization/auth.guard';
 
 
 const routes: Routes = [
@@ -13,6 +14,11 @@ const routes: Routes = [
     path: 'account',
     loadChildren: async () => ((await import('./features/account/account.module')).AccountModule),
     canActivate: [LoginAuthGuard]
+  },
+  {
+    path: 'products',
+    loadChildren: async () => ((await  import ('./features/products/products.module')).ProductsModule),
+    canActivate:[AuthorizationGuard]
   }
 ];
 
