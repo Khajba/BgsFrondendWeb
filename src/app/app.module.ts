@@ -5,20 +5,23 @@ import { AppComponent } from './app.component';
 import { HttpRequestInterceptor } from './core/http/http-request.intercaptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthorizationModule } from './core/authorization/authorization.module';
-import { SharedModule } from './shared/shared.module';
+import { BgsSharedModule } from './shared/bgs-shared.module';
 import {BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MessageService } from 'primeng/api';
+import { NavigationComponent } from './navigation/navigation.component';
+import { ProductService } from './features/products/product.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     AuthorizationModule,
-    SharedModule,
+    BgsSharedModule,
     BrowserAnimationsModule
   ],
   providers: [
@@ -27,7 +30,8 @@ import { MessageService } from 'primeng/api';
       useClass: HttpRequestInterceptor,
       multi: true
     },
-    MessageService
+    MessageService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

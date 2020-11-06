@@ -5,11 +5,11 @@ import { AuthorizationGuard, LoginAuthGuard } from './core/authorization/auth.gu
 
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'account',
-  //   pathMatch: 'full'
-  // },
+  {
+    path: '',
+    redirectTo: 'products',
+    pathMatch: 'full'
+  },
   {
     path: 'account',
     loadChildren: async () => ((await import('./features/account/account.module')).AccountModule),
@@ -17,8 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'products',
-    loadChildren: async () => ((await  import ('./features/products/products.module')).ProductsModule),
-    canActivate:[AuthorizationGuard]
+    loadChildren: async () => ((await import('./features/products/products.module')).ProductsModule),
+    canActivate: [AuthorizationGuard]
   }
 ];
 

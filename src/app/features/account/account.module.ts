@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AccountRoutingModule } from './account-routing.module';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { BgsSharedModule } from 'src/app/shared/bgs-shared.module';
 import { AccountService } from './account.service';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { AccountService } from './account.service';
   ],
   imports: [
     AccountRoutingModule,
-    SharedModule
+    BgsSharedModule
   ],
   providers: [
     AccountService
