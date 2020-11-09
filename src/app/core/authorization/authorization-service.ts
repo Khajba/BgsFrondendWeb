@@ -1,45 +1,47 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthenticateUserModel } from 'src/app/models/authenticate-user.model';
+import { AppConfigurationService } from '../app-configuration/app.configuration.service';
 import { Constants } from '../constants';
 import { HttpService } from '../http/http.service';
 import { AuthUserModel, JsonWebToken } from './authentification-response.model';
-import { map } from 'rxjs/operators'
-
-const apiBaseUrl = "http://localhost:56902/api/account";
 
 @Injectable()
 export class AuthorizationService {
 
-    isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.cookieService.get(Constants.KEY_OUT_USER) != "");
+    private get apiBaseUri() { return `${this.appConfigService.getAppConfig('apiBaseUri')}/api/account`; }
 
-    getAuthUserData(): AuthUserModel {
-        const AuthUserCookie = this.cookieService.get(Constants.KEY_OUT_USER);
+    isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.cookieService.get(Constants.KEY_AUTH_USER) !== "");
 
-        if (AuthUserCookie === "") {
+    get authUserData(): AuthUserModel {
+        const authUserCookie = this.cookieService.get(Constants.KEY_AUTH_USER);
+
+        if (authUserCookie === "") {
             window.location.reload();
 
             return <any>{};
         }
 
-        return JSON.parse(AuthUserCookie);
+        return JSON.parse(authUserCookie);
     }
 
     constructor(
         private readonly httpService: HttpService,
         private readonly cookieService: CookieService,
-        private readonly router: Router) { }
+        private readonly router: Router,
+        private readonly appConfigService: AppConfigurationService) { }
 
     login(user: AuthenticateUserModel) {
-        return this.httpService.get<AuthUserModel>(`${apiBaseUrl}/login`, user)
+        return this.httpService.get<AuthUserModel>(`${this.apiBaseUri}/login`, user)
             .pipe(map(response => {
-                response.jwt.expiresOnClient = new Date((new Date()).getTime() + response.jwt.expiresMinutes * 30000).getTime();
-                response.jwt.expiresOnServer = new Date((new Date()).getTime() + response.jwt.expiresMinutes * 60000).getTime();
+                response.jwt.expiresOnClient = new Date((new Date()).getTime() + response.jwt.expiresInMinutes * 30000).getTime();
+                response.jwt.expiresOnServer = new Date((new Date()).getTime() + response.jwt.expiresInMinutes * 60000).getTime();
 
                 this.cookieService.set(
-                    Constants.KEY_OUT_USER,
+                    Constants.KEY_AUTH_USER,
                     JSON.stringify(response),
                     new Date(response.jwt.expiresOnServer),
                     "/"
@@ -52,27 +54,26 @@ export class AuthorizationService {
     }
 
     refreshToken() {
-        return this.httpService.get<JsonWebToken>(`${apiBaseUrl}/refreshToken`)
+        return this.httpService.get<JsonWebToken>(`${this.apiBaseUri}/refreshToken`, null, null, true)
             .pipe(map(response => {
-                const authUserCookie = this.cookieService.get(Constants.KEY_OUT_USER)
+                const authUserCookie = this.cookieService.get(Constants.KEY_AUTH_USER);
                 const authUserData = <AuthUserModel>JSON.parse(authUserCookie);
 
-                response.expiresOnClient = new Date((new Date()).getTime() + response.expiresMinutes * 30000).getTime();
-                response.expiresOnServer = new Date((new Date()).getTime() + response.expiresMinutes * 60000).getTime();
+                response.expiresOnClient = new Date((new Date()).getTime() + response.expiresInMinutes * 30000).getTime();
+                response.expiresOnServer = new Date((new Date()).getTime() + response.expiresInMinutes * 60000).getTime();
 
                 this.cookieService.set(
-                    Constants.KEY_OUT_USER,
+                    Constants.KEY_AUTH_USER,
                     JSON.stringify({ ...authUserData, jwt: response }),
                     new Date(response.expiresOnServer),
                     "/"
                 );
 
                 return response.accessToken;
-
             }));
     }
 
     logout() {
-        this.cookieService.delete(Constants.KEY_OUT_USER, '/');
+        this.cookieService.delete(Constants.KEY_AUTH_USER, "/");
     }
 }

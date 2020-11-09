@@ -7,12 +7,14 @@ import { ProductFilterComponent } from './product-filter/product-filter.componen
 import { BgsSharedModule } from 'src/app/shared/bgs-shared.module';
 import { Categoryservice } from './category-service';
 import { ProductListComponent } from './product-list/product-list.component';
+import { ProductListItemComponent } from './product-list/product-list-item/product-list-item.component';
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductFilterComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductListItemComponent
   ],
   imports: [
     CommonModule,

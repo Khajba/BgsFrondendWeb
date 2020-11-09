@@ -1,0 +1,18 @@
+<div class="content-wrapper">
+    <div class="img-wrapper">
+        <img [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl!=null">
+    </div>
+    <div class="details-wrapper">
+        <div class="name-wrapper">{{product.name}} </div>
+        <div class="price-wrapper">
+            <span class="currency">$</span>
+            <span class="integer">{{ priceInteger }} </span>
+            <span class="decimal"> {{ priceDecimal }} </span>
+        </div>
+
+        <div class="add-cart-btn-wrapper">
+            <button pButton pRipple type="button" label="Add To Cart"></button>
+        </div>
+
+    </div>
+</div>
