@@ -23,6 +23,11 @@ export interface ProductFilter {
     artistId?: number;
     designerId?: number;
     mechanicsId?: number;
+    categoryId?: number;
+    name?: string;
+    pageSize?: number;
+    pageNumber?: number;
+    sortOrder?: number;
 }
 
 export interface ProductListItem {

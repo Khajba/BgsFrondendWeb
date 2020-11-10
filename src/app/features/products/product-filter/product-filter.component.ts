@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { ProductFilter } from 'src/app/models/product.models';
+import { BgsSharedService } from 'src/app/shared/bgs-shared.service';
 import { Categoryservice } from '../category-service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-filter',
@@ -15,9 +17,13 @@ export class ProductFilterComponent implements OnInit {
   mechanics: SelectItem[] = [];
 
   filter: ProductFilter = {};
+
   showContainer: boolean = true;
 
-  constructor(private readonly categoryService: Categoryservice) { }
+  constructor(
+    private readonly categoryService: Categoryservice,
+    private readonly sharedService: BgsSharedService,
+  ) { }
 
   ngOnInit(): void {
     this.getArtists();
@@ -27,6 +33,24 @@ export class ProductFilterComponent implements OnInit {
 
   toggleFilterClick() {
     this.showContainer = !this.showContainer;
+  }
+
+  searchClick() {
+    this.sharedService.productFilter.next(this.filter)
+  }
+
+  clearClick() {
+    this.filter = {
+      artistId: undefined,
+      designerId: undefined,
+      mechanicsId: undefined,
+      priceFrom: undefined,
+      priceTo: undefined
+    };
+
+    this.sharedService.productFilter.next(this.filter)
+
+
   }
 
   private getArtists() {

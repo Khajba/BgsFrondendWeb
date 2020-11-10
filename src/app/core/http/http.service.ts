@@ -28,7 +28,9 @@ export class HttpService {
         const params = new URLSearchParams();
 
         for (var field in filter) {
-            params.set(field, filter[field])
+            if (filter[field] != null) {
+                params.set(field, filter[field])
+            }
         }
 
         return params;

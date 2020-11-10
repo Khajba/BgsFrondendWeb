@@ -1,1 +1,19 @@
+<div class="content-wrapper">
+
+    <div class="page-size-dropdown-wrapper">
+        <p-dropdown [options]="pageSizeOptions" [showClear]="true" [(ngModel)]="filter.pageSize"
+            (onChange)="changePageSize()"></p-dropdown>
+    </div>    
+
+    <div class="sort-order-wrapper" >
+        <p-dropdown [options]="options" [showClear]="true" [(ngModel)]="filter.sortOrder"
+        (onChange)="changeSortOrder()"></p-dropdown>
+    </div>
+
+</div>
+
 <app-product-list-item *ngFor="let product of products" [product]="product"></app-product-list-item>
+
+<div class="btn-wrapper">
+    <button pButton pRipple type="button" label="Load More"></button>
+</div>
