@@ -9,6 +9,10 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { SecureUrlPipe } from '../core/secure-url.pipe';
 import { MessageService } from 'primeng/api';
 import { SharedTagsComponent } from './shared-tags/shared-tags.component';
+import { CalendarModule } from 'primeng/calendar';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
     declarations: [
@@ -24,7 +28,11 @@ import { SharedTagsComponent } from './shared-tags/shared-tags.component';
         DropdownModule,
         LocalizePipe,
         FileUploadModule,
-        SecureUrlPipe
+        SecureUrlPipe,
+        CalendarModule,
+        DialogModule,
+        ConfirmDialogModule,
+        TableModule
     ],
     providers: [
 

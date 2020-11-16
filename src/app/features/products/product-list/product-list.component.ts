@@ -56,6 +56,11 @@ export class ProductListComponent implements OnInit {
     this.getProducts();
   }
 
+  loadMore(){
+    this.filter.pageSize +=15;
+    this.getProducts();
+  }
+
   private subscribeSubjet() {
     this.sharedService.productFilter$.subscribe(
       filter => {

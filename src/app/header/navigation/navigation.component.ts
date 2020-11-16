@@ -12,10 +12,7 @@ import { BgsSharedService } from 'src/app/shared/bgs-shared.service';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-
-  get firstname() {
-    return this.authorizationService.authUserData.firstname;
-  }
+ 
 
   categories: SelectItem[] = [];
 

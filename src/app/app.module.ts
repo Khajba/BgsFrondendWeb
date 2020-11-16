@@ -14,13 +14,15 @@ import { HttpHeadersInterceptor } from './core/http/http-language-header.interce
 import { HttpErrorHandlerInterceptor } from './core/http/http-error-handler.interceptor';
 import { NavigationComponent } from './header/navigation/navigation.component';
 import { LanguageComponent } from './header/language/language.component';
+import { UserProfileComponent } from './header/user-profile/user-profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    LanguageComponent
+    LanguageComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

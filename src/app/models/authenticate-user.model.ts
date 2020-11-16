@@ -8,4 +8,5 @@ export interface RegisterUserModel {
     firstname?: string;
     lastname?: string;
     password?: string;
+    repeatPassword?: string;
 }

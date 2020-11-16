@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { RegisterUserModel } from 'src/app/models/authenticate-user.model';
-import { User } from 'src/app/models/user';
+import { UserDetails } from 'src/app/models/user-models';
 import { AccountService } from '../account.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { AccountService } from '../account.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  user: User = {};
+  user: RegisterUserModel = {};
 
   constructor(
     private readonly accountService: AccountService,

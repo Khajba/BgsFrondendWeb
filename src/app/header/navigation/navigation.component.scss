@@ -54,23 +54,9 @@
             }
         }
 
-        .profile-wrapper {
+        .user-profile-wrapper {
             display: inline-block;
             vertical-align: middle;
-            margin-left: 15px;
-            text-align: center;
-            max-width: 90px;
-
-            .icon {
-                font-size: 40px;
-                cursor: pointer;
-            }
-
-            .username {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
         }
 
         .language-wrapper {
