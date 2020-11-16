@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProductDetails, ProductListItem } from 'src/app/models/product.models';
-import { ProductService } from '../../product.service';
+import { Component, Input } from '@angular/core';
+import { ProductListItem } from 'src/app/models/product.models';
+import { BgsSharedService } from 'src/app/shared/bgs-shared.service';
 
 @Component({
   selector: 'app-product-list-item',
@@ -11,8 +11,18 @@ export class ProductListItemComponent {
   @Input()
   product: ProductListItem = {};
 
+  showNumber: boolean;
+  constructor(private readonly bgsSharedSerice: BgsSharedService) { }
+
   get priceInteger(): number {
     return Math.trunc(this.product.price);
+  }
+
+  addCartClick(event: any) {
+    event.stopPropagation();
+    this.bgsSharedSerice.showNumber.next(this.showNumber);
+    this.showNumber = true;
+
   }
 
   get priceDecimal(): number {

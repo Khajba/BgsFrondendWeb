@@ -1,0 +1,35 @@
+<div class="container">
+
+    <div class="attachments-wrapper">
+        <div class="small-attachment" *ngFor="let attachment of product.attachments">
+            <img [src]="attachment | secure | async" *ngIf="attachment != null" > 
+        </div>
+        <div class="primary-attachment">
+            <img [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl !=null" >
+        </div>
+    </div>
+
+    <div class="details-wrapper">
+        <div class="name-wrapper">sadafkdshfjsd hdja </div>
+        <div class="price-wrapper">Price: </div>
+        <div class="details"></div>
+    </div>
+
+    <div class="stock-cart-wrapper">
+        <div class="stock" *ngIf="5 >=product.stock ">Only {{product.stock}} left in stock - order soon</div>
+        <div class="cart">
+            <button pButton pRipple type="submit" label="Add To Cart" class="cart-btn" icon="pi pi-shopping-cart"
+                (click)="cartClick()"></button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="textarea-wrapper">
+    <textarea placeholder="Write a comment"></textarea>
+</div>
+
+<div class="btn-wrapper">
+    <button pButton pRipple type="submit" label="Add Comment" (click)="addCommentClick()"></button>
+</div>

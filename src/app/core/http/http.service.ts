@@ -18,7 +18,7 @@ export class HttpService {
             .pipe(map(response => this.handleResponse(response, showDefaultMessage)));
     }
 
-    post<TData>(url: string, body: any, showDefaultMessage?: boolean, skipJwtInterceptor: boolean = false) {
+    post<TData>(url: string, body?: any, showDefaultMessage?: boolean, skipJwtInterceptor: boolean = false) {
         return this.httpClient
             .post<TData>(url, body, { headers: { skipJwtInterceptor: skipJwtInterceptor.toString() } })
             .pipe(map(response => this.handleResponse(response, showDefaultMessage)));

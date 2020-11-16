@@ -4,17 +4,12 @@ export interface ProductCategory {
 }
 
 export interface ProductDetails {
-    id?: number;
-    primaryAttachmentUrl?: string;
-    categoryId?: number;
-    artistId?: number;
-    designerId?: number;
-    mechanicsId?: number;
     name?: string;
     price?: number;
     stock?: number;
     description?: string;
-    attachments?: ProductAttachment[];
+    attachments?: string[];
+    primaryAttachmentUrl?: string;
 }
 
 export interface ProductFilter {
@@ -42,7 +37,3 @@ export interface ProductListItem {
     mechanics?: string;
 }
 
-export class ProductAttachment {
-    id?: number;
-    name?: string;
-}

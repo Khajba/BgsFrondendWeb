@@ -48,9 +48,19 @@
             display: inline-block;
             vertical-align: middle;
             cursor: pointer;
+            position: relative;
 
             .icon {
                 font-size: 40px;
+            }
+            .number {
+                position: absolute;
+                top: 10px;
+                left: 13px;
+                background-color: red;
+                color: white;
+                width: 13px;
+                text-align: center;
             }
         }
 

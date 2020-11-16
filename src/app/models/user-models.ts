@@ -6,7 +6,7 @@ export interface UserDetails {
 }
 
 export interface ChangeUserPassword {
-    password?: string;
+    oldPassword?: string;
     newPassword?: string;
     repeatNewPassword?: string;
 }
@@ -39,4 +39,9 @@ export interface UserOrderItem {
     OrderDate?: Date;
     totalAmount?: number;
     orderStatus?: string;
+}
+
+export interface UserAttachment {
+    attachmentId?: number;
+    attachmentUrl?: string;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService, SelectItem } from 'primeng/api';
-import { ChangeUserPassword, UserAddress, UserDetails, UserPaymentDetails } from 'src/app/models/user-models';
+import { ChangeUserPassword, UserAddress, UserAttachment, UserDetails, UserPaymentDetails } from 'src/app/models/user-models';
 import { UserService } from '../user.service';
 
 @Component({
@@ -16,9 +16,13 @@ export class UserAccountComponent implements OnInit {
   userAddress: UserAddress = {}
   userPayment: UserPaymentDetails = {};
 
+  attachment: UserAttachment = {};
+
   displayPasswordDialog: boolean = false;
 
   displayBalanceDialog: boolean = false;
+
+  displayUploadDialog: boolean = false;
 
   userDetails: UserDetails = {};
 
@@ -44,13 +48,31 @@ export class UserAccountComponent implements OnInit {
     this.getUserAddress();
     this.getUserPaymentDetails();
     this.getUserBalance();
+    this.getUserAttachmnet();
   }
 
   changePassword() {
-    if (this.userPassword.password != this.userPassword.repeatNewPassword) {
+    if (this.userPassword.newPassword != this.userPassword.repeatNewPassword) {
       this.messageService.add({ severity: 'error', detail: 'Passwords do not match', summary: 'Error' })
     }
     this.changeUserPassword();
+  }
+
+  uploadClick() {
+    this.displayUploadDialog = true;
+  }
+
+  uploadAttachemnts(event: any) {
+    this.userService.addUserAttachment(event.files[0]).subscribe(
+      response => {
+        this.getUserAttachmnet();
+        this.displayUploadDialog = false;
+      }
+    )
+  }
+
+  removeClick() {
+    this.removeAttachment();
   }
 
   balanceClick() {
@@ -75,6 +97,22 @@ export class UserAccountComponent implements OnInit {
 
   saveUserPaymentDetailsClick() {
     this.saveUserPaymentDetails();
+  }
+
+  private removeAttachment() {
+    this.userService.removeUserAttachment().subscribe(
+      response => {
+        this.attachment = null;
+      }
+    )
+  }
+
+  private getUserAttachmnet() {
+    this.userService.getUserAttachment().subscribe(
+      response => {
+        this.attachment = response
+      }
+    )
   }
 
   private getUserPaymentDetails() {
@@ -149,7 +187,4 @@ export class UserAccountComponent implements OnInit {
       }
     )
   }
-
-
-
 }

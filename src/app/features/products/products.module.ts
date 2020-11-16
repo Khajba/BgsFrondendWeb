@@ -8,6 +8,7 @@ import { BgsSharedModule } from 'src/app/shared/bgs-shared.module';
 import { Categoryservice } from './category-service';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductListItemComponent } from './product-list/product-list-item/product-list-item.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ProductListItemComponent } from './product-list/product-list-item/produ
     ProductsComponent,
     ProductFilterComponent,
     ProductListComponent,
-    ProductListItemComponent
+    ProductListItemComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,

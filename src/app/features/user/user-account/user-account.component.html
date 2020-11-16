@@ -1,7 +1,14 @@
 <div class="container">
 
     <div class="img-wrapper">
-        <img src="https://i.pinimg.com/originals/7d/1a/3f/7d1a3f77eee9f34782c6f88e97a6c888.jpg">
+        <img [src]="attachment.attachmentUrl | secure | async" >
+        <div class="hover-wrapper">
+            <button  pButton pRipple type="button" label="Upload New" name="upload"
+                class="p-button-info upload-btn" icon="pi pi-upload" (click)="uploadClick()"></button>
+
+            <button pButton pRipple type="button" label="Remove" icon="pi pi-trash"
+                class="p-button-danger remove-btn" (click)="removeClick()"></button>
+        </div>
     </div>
 
     <form #formUserDetails="ngForm" class="form-user">
@@ -146,7 +153,7 @@
         <div class="password-dialog-wrapper">
             <div class="input-wrapper">
                 <span class="p-float-label">
-                    <input name="password" id="password" type="password" pInputText [(ngModel)]="userPassword.password"
+                    <input name="password" id="password" type="password" pInputText [(ngModel)]="userPassword.oldPassword"
                         required>
                     <label for="password">Password</label>
                 </span>
@@ -190,4 +197,11 @@
             </div>
         </div>
     </form>
+</p-dialog>
+
+<p-dialog header="Upload Image" [(visible)]="displayUploadDialog" [style]="{width: '550px'}" [modal]="true">
+
+    <p-fileUpload *ngIf="displayUploadDialog" multiple="true" customUpload="true"
+        (uploadHandler)="uploadAttachemnts($event)"></p-fileUpload>
+
 </p-dialog>

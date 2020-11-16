@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { map } from 'rxjs/operators';
 import { HttpService } from 'src/app/core/http/http.service';
-import { ChangeUserPassword, UserAddress, UserDetails, UserPaymentDetails } from 'src/app/models/user-models';
+import { ChangeUserPassword, UserAddress, UserAttachment, UserDetails, UserPaymentDetails } from 'src/app/models/user-models';
 
 const apiBaseUrl = "http://localhost:56902/api/User"
 @Injectable()
@@ -14,15 +14,17 @@ export class UserService {
     }
 
     saveUserDetails(userDetails: UserDetails) {
-        return this.httpService.post<UserDetails>(`${apiBaseUrl}/saveUserDetails`, userDetails, true)
+        return this.httpService.post<UserDetails>(`${apiBaseUrl}/saveDetails`, userDetails, true)
     }
 
-    changeUserPassword(password: ChangeUserPassword) {
-        return this.httpService.post<ChangeUserPassword>(`${apiBaseUrl}/changeUserPassword`, password, true)
-    }
+
 
     addUserBalance(balance: number) {
         return this.httpService.post<number>(`${apiBaseUrl}/addUserBalance`, balance, true)
+    }
+
+    getUserBalance() {
+        return this.httpService.get<number>(`${apiBaseUrl}/getUserBalance`)
     }
 
     getUserAddress() {
@@ -54,11 +56,29 @@ export class UserService {
             ...userPayment,
             cardNumber: userPayment.cardNumber1 + userPayment.cardNumber2 + userPayment.cardNumber3 + userPayment.cardNumber4
         }
-        return this.httpService.post<UserPaymentDetails>(`${apiBaseUrl}/saveUserPaymentDetails`, requestParams, true)
+        return this.httpService.post<UserPaymentDetails>(`${apiBaseUrl}/savePaymentDetails`, requestParams, true)
     }
 
-    getUserBalance() {
-        return this.httpService.get<number>(`${apiBaseUrl}/getUserBalance`)
+    getUserAttachment() {
+        return this.httpService.get<UserAttachment>(`${apiBaseUrl}/getUserAttachment`)
     }
+
+    changeUserPassword(password: ChangeUserPassword) {
+        return this.httpService.post<ChangeUserPassword>(`${apiBaseUrl}/changeUserPassword`, password, true)
+    }
+
+    addUserAttachment( file){
+        const formData = new FormData();
+        formData.append('file', file);
+
+        return this.httpService.post(`${apiBaseUrl}/addUserAttachment`, formData)
+
+    }
+
+    removeUserAttachment(){
+        return this.httpService.post(`${apiBaseUrl}/removeUserAttachment` )
+    }
+
+
 }
 

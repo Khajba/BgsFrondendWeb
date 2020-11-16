@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<div class="content-wrapper" routerLink="/products/details">
     <div class="img-wrapper">
         <img [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl!=null">
     </div>
@@ -11,7 +11,7 @@
         </div>
 
         <div class="add-cart-btn-wrapper">
-            <button pButton pRipple type="button" label="Add To Cart"></button>
+            <button pButton pRipple type="button" label="Add To Cart" (click)="addCartClick($event)"></button>
         </div>
 
     </div>

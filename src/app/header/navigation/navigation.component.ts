@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { AuthorizationService } from 'src/app/core/authorization/authorization-service';
 import { ProductService } from 'src/app/features/products/product.service';
-import { ProductDetails, ProductFilter } from 'src/app/models/product.models';
+import { ProductFilter } from 'src/app/models/product.models';
 import { BgsSharedService } from 'src/app/shared/bgs-shared.service';
 
 
@@ -12,13 +12,12 @@ import { BgsSharedService } from 'src/app/shared/bgs-shared.service';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
- 
 
   categories: SelectItem[] = [];
 
-  product: ProductDetails = {};
-
   filter: ProductFilter = {};
+
+  showNumber: boolean = false;
 
   constructor(
     private readonly productService: ProductService,
@@ -26,8 +25,15 @@ export class NavigationComponent implements OnInit {
     private readonly sharedService: BgsSharedService) { }
 
   ngOnInit(): void {
-    this.getProdcutCategories()
+    this.getProdcutCategories();
+    this.sharedService.showNumber$.subscribe(
+      response => {
+        this.showNumber = true;
+      }
+    )
   }
+
+
 
   searchClick() {
     this.sharedService.productFilter.next(this.filter);

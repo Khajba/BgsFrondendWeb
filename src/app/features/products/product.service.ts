@@ -15,7 +15,15 @@ export class ProductService {
         return this.httpService.get<ProductCategory[]>(`${apiBaseUrl}/getProductCategories`)
     }
 
-    getProducts(filter : ProductFilter) {
+    getProducts(filter: ProductFilter) {
         return this.httpService.get<ProductListItem[]>(`${apiBaseUrl}/getProducts`, filter)
+    }
+
+    getProductDetails() {
+        return this.httpService.get(`${apiBaseUrl}/getProductDetails`)
+    }
+
+    getProductStock(){
+        return this.httpService.get(`${apiBaseUrl}/getProductStock`)
     }
 }
