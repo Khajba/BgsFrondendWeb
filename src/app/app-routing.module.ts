@@ -22,9 +22,14 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: async () =>((await import('./features/user/user.module')).UserModule),
+    loadChildren: async () => ((await import('./features/user/user.module')).UserModule),
     canActivate: [AuthorizationGuard]
-  }
+  },
+  {
+    path: 'cart',
+    loadChildren: async () => ((await import('./features/cart/cart.module')).CartModule),
+    canActivate: [AuthorizationGuard]
+  },
 ];
 
 @NgModule({

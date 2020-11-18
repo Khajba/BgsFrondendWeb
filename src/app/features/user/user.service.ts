@@ -38,7 +38,7 @@ export class UserService {
     getUserPaymentDetails() {
         return this.httpService.get<UserPaymentDetails>(`${apiBaseUrl}/getPaymentDetails`)
             .pipe(map(
-                response => {
+                response => {                    
                     const cardNumbers = response.cardNumber.match(/.{1,4}/g);
 
                     response.cardNumber1 = cardNumbers[0];

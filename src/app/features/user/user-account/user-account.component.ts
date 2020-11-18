@@ -26,8 +26,6 @@ export class UserAccountComponent implements OnInit {
 
   userDetails: UserDetails = {};
 
-  user: UserPaymentDetails = {}
-
   month: SelectItem[] = [];
 
   yearOptions: SelectItem[] = [];
@@ -117,8 +115,8 @@ export class UserAccountComponent implements OnInit {
 
   private getUserPaymentDetails() {
     this.userService.getUserPaymentDetails().subscribe(
-      resposne => {
-        this.userPayment = resposne;
+      response => {
+        this.userPayment = response;
       }
     )
   }

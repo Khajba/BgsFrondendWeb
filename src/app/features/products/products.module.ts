@@ -10,7 +10,6 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductListItemComponent } from './product-list/product-list-item/product-list-item.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
-
 @NgModule({
   declarations: [
     ProductsComponent,

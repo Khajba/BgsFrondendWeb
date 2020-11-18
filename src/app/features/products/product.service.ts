@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Subject } from 'rxjs';
 import { HttpService } from 'src/app/core/http/http.service';
 import { Artist, Designer, Mechanic } from 'src/app/models/categories.model';
+import { CommentModel } from 'src/app/models/comment.model';
 import { ProductCategory, ProductFilter, ProductListItem } from 'src/app/models/product.models';
 
 const apiBaseUrl = "http://localhost:56902/api/product"
@@ -26,4 +27,13 @@ export class ProductService {
     getProductStock(){
         return this.httpService.get(`${apiBaseUrl}/getProductStock`)
     }
+
+    getProductComments(){
+        return this.httpService.get<CommentModel[]>(`${apiBaseUrl}/getProductComment`)
+    }
+
+    addProductComment(description : string){
+        return this.httpService.post<CommentModel>(`${apiBaseUrl}/saveProductCommnet`, {description})
+    }
+    
 }

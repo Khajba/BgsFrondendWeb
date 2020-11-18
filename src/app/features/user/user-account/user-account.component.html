@@ -1,13 +1,13 @@
 <div class="container">
 
     <div class="img-wrapper">
-        <img [src]="attachment.attachmentUrl | secure | async" >
+        <img [src]="attachment.attachmentUrl | secure | async">
         <div class="hover-wrapper">
-            <button  pButton pRipple type="button" label="Upload New" name="upload"
-                class="p-button-info upload-btn" icon="pi pi-upload" (click)="uploadClick()"></button>
+            <button pButton pRipple type="button" label="Upload New" name="upload" class="p-button-info upload-btn"
+                icon="pi pi-upload" (click)="uploadClick()"></button>
 
-            <button pButton pRipple type="button" label="Remove" icon="pi pi-trash"
-                class="p-button-danger remove-btn" (click)="removeClick()"></button>
+            <button pButton pRipple type="button" label="Remove" icon="pi pi-trash" class="p-button-danger remove-btn"
+                (click)="removeClick()"></button>
         </div>
     </div>
 
@@ -114,15 +114,14 @@
         </div>
 
         <div class="card-number-wrapper">
-            <label for="card-number1">Card Number: </label>
-            <input name="card-number1" id="card-number1" type="number" pInputText ([ngModel])="userPayment.cardNumber1"
-                required>
+            <label for="c-number">C Number: </label>
+            <input name="c-number" type="number" pInputText [(ngModel)]="userPayment.cardNumber1" required>
             -
-            <input name="card-number2" type="number" pInputText ([ngModel])="userPayment.cardNumber2" required>
+            <input name="c-number2" type="number" pInputText [(ngModel)]="userPayment.cardNumber2" required>
             -
-            <input name="card-number3" type="number" pInputText ([ngModel])="userPayment.cardNumber3" required>
+            <input name="c-number3" type="number" pInputText [(ngModel)]="userPayment.cardNumber3" required>
             -
-            <input name="card-number4" type="number" pInputText ([ngModel])="userPayment.cardNumber4" required>
+            <input name="c-number4" type="number" pInputText [(ngModel)]="userPayment.cardNumber4" required>
         </div>
 
         <div class="expiration-date-dropdown-wrapper">
@@ -153,8 +152,8 @@
         <div class="password-dialog-wrapper">
             <div class="input-wrapper">
                 <span class="p-float-label">
-                    <input name="password" id="password" type="password" pInputText [(ngModel)]="userPassword.oldPassword"
-                        required>
+                    <input name="password" id="password" type="password" pInputText
+                        [(ngModel)]="userPassword.oldPassword" required>
                     <label for="password">Password</label>
                 </span>
             </div>

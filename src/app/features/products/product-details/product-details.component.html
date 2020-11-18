@@ -2,17 +2,17 @@
 
     <div class="attachments-wrapper">
         <div class="small-attachment" *ngFor="let attachment of product.attachments">
-            <img [src]="attachment | secure | async" *ngIf="attachment != null" > 
+            <img [src]="attachment | secure | async" *ngIf="attachment != null">
         </div>
         <div class="primary-attachment">
-            <img [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl !=null" >
+            <img [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl !=null">
         </div>
     </div>
 
     <div class="details-wrapper">
         <div class="name-wrapper">sadafkdshfjsd hdja </div>
-        <div class="price-wrapper">Price: </div>
-        <div class="details"></div>
+        <div class="price-wrapper">Price: ${{product.price}} </div>
+        <div class="details"> {{product.description}} </div>
     </div>
 
     <div class="stock-cart-wrapper">
@@ -32,4 +32,12 @@
 
 <div class="btn-wrapper">
     <button pButton pRipple type="submit" label="Add Comment" (click)="addCommentClick()"></button>
+</div>
+
+<div class="comment-wrapper" *ngFor="let comment of product.comments">
+    <div class="comment-details">
+        <div class="avtor">Writen By: {{comment.avtor}} </div>
+        <div class="date">at: {{comment.createDate}} </div>
+    </div>
+    <div class="description"> {{comment.description }}</div>
 </div>

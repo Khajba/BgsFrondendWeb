@@ -1,3 +1,5 @@
+import { CommentModel } from './comment.model';
+
 export interface ProductCategory {
     id?: number;
     name?: string;
@@ -10,6 +12,7 @@ export interface ProductDetails {
     description?: string;
     attachments?: string[];
     primaryAttachmentUrl?: string;
+    comments?: CommentModel[];
 }
 
 export interface ProductFilter {
@@ -35,5 +38,12 @@ export interface ProductListItem {
     artist?: string;
     desigener?: string;
     mechanics?: string;
+}
+
+export interface CartItem {
+    primaryAttachmentUrl?:string;
+    name?:string;
+    price?:number;
+    quantity?:number;
 }
 
