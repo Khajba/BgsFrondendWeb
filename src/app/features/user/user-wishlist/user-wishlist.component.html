@@ -1,13 +1,5 @@
 <div class="container">
-
-    <div class="cart">Cart</div>
-
-    
-
-    <div class="product-details">
-
-
-    </div>
-
-
+    <app-user-wishlist-item *ngFor="let item of wishlistItems" [wishlist]="item"
+        (onDelete)="removeFromWishlist($event)">
+    </app-user-wishlist-item>
 </div>

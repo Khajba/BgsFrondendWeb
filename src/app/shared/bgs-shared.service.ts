@@ -7,10 +7,11 @@ import { Subject } from 'rxjs';
 export class BgsSharedService {
 
     productFilter : Subject<any> = new Subject<any>();
-
     productFilter$ = this.productFilter.asObservable();
 
     showNumber : Subject<any> = new Subject<any>();
-
     showNumber$ = this.showNumber.asObservable();
+
+    
+
 }

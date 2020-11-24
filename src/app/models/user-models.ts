@@ -45,3 +45,11 @@ export interface UserAttachment {
     attachmentId?: number;
     attachmentUrl?: string;
 }
+
+export interface UserWishlist {
+    productId?:number;
+    id?:number;
+    primaryAttachmentUrl?: string;
+    name?: string;
+    price?: number;
+}

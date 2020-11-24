@@ -1,9 +1,9 @@
 <div class="container">
     <div class="img-wrapper">
-        <img [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl != null">
+        <img [src]="cartItem.primaryAttachmentUrl | secure | async" *ngIf="cartItem.primaryAttachmentUrl != null">
     </div>
     <div class="details-wrapper">
-        <div class="name-wrapper">product.name</div>
+        <div class="name-wrapper"> {{cartItem.name}} </div>
         <div class="price-wrapper">Price:
             <span class="currency">$</span>
             <span class="integer"> {{priceInteger}} </span>
@@ -12,7 +12,7 @@
         </div>
         <div class="quantity-wrapper">
             <div class="quantity">Quantity: </div>
-            <p-dropdown class="dropdown" [options]="quantities" [(ngModel)]="product.quantity"></p-dropdown>
+            <p-dropdown class="dropdown" [options]="quantities" [(ngModel)]="cartItem.quantity"></p-dropdown>
         </div>
     </div>
 

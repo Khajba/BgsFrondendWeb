@@ -6,6 +6,7 @@ import { UserWishlistComponent } from './user-wishlist/user-wishlist.component';
 import { UserRoutingModule } from './user-routing-module';
 import { BgsSharedModule } from 'src/app/shared/bgs-shared.module';
 import { UserService } from './user.service';
+import { UserWishlistItemComponent } from './user-wishlist/user-wishlist-item/user-wishlist-item.component';
 
 
 
@@ -13,7 +14,8 @@ import { UserService } from './user.service';
   declarations: [
     UserAccountComponent,
     UserOrdersComponent,
-    UserWishlistComponent],
+    UserWishlistComponent,
+    UserWishlistItemComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

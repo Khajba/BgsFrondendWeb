@@ -3,13 +3,11 @@
     <div class="page-size-dropdown-wrapper">
         <p-dropdown [options]="pageSizeOptions" [showClear]="true" [(ngModel)]="filter.pageSize"
             (onChange)="changePageSize()"></p-dropdown>
-    </div>    
+    </div>
 
     <div class="sort-order-wrapper">
-        <p-dropdown [options]="options" [showClear]="true" [(ngModel)]="filter.sortOrder"
-        (onChange)="changeSortOrder()"></p-dropdown>
+        <p-dropdown [options]="options" [(ngModel)]="filter.sortOrder" (onChange)="changeSortOrder()"></p-dropdown>
     </div>
-    
 
 </div>
 

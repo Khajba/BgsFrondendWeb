@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductDetails } from 'src/app/models/product.models';
+import { CartItem, ProductDetails } from 'src/app/models/product.models';
 import { BgsSharedService } from 'src/app/shared/bgs-shared.service';
 import { ProductService } from '../product.service';
-import { CommentModel } from 'src/app/models/comment.model';
+import { CartService } from '../../cart/cart.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-details',
@@ -12,18 +13,22 @@ import { CommentModel } from 'src/app/models/comment.model';
 export class ProductDetailsComponent implements OnInit {
 
   showNumber: boolean = false;
-  product: ProductDetails = { stock: 3, price: 61.95, description: 'safdjsfd' };
-  comment: CommentModel = {};
+  product: ProductDetails = {};
+  newCommentDescription: string;
+  cartItem: CartItem = {};
 
+  currentProductId: number;
 
-
-
-  constructor(private readonly productService: ProductService,
-    private readonly bgsSharedservice: BgsSharedService) { }
+  constructor(
+    private readonly productService: ProductService,
+    private readonly bgsSharedservice: BgsSharedService,
+    private readonly cartService: CartService,
+    private readonly activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.currentProductId = +this.activatedRoute.snapshot.paramMap.get('productId');
+
     this.getProductDetails();
-    this.getProductStock();
   }
 
   addCommentClick() {
@@ -33,18 +38,20 @@ export class ProductDetailsComponent implements OnInit {
   cartClick() {
     this.showNumber = true;
     this.bgsSharedservice.showNumber.next(this.showNumber);
+    this.addToCart(this.product.id);
+
   }
 
-  private getProductStock() {
-    this.productService.getProductStock().subscribe(
+  private addToCart(productId: number) {
+    this.cartService.addToCart(productId).subscribe(
       response => {
-        this.product = response;
+        this.cartItem = response;
       }
     )
   }
 
   private getProductComments() {
-    this.productService.getProductComments().subscribe(
+    this.productService.getProductComments(this.currentProductId).subscribe(
       response => {
         this.product.comments = response;
       }
@@ -52,22 +59,19 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   private addProductComment() {
-    this.productService.addProductComment(this.comment.description).subscribe(
+    this.productService.addProductComment(this.newCommentDescription, this.currentProductId).subscribe(
       response => {
         this.getProductComments();
+        this.newCommentDescription = undefined;
       }
     )
   }
 
-
-
   private getProductDetails() {
-    this.productService.getProductDetails().subscribe(
+    this.productService.getProductDetails(this.currentProductId).subscribe(
       response => {
         this.product = response
       }
     )
   }
-
-
 }

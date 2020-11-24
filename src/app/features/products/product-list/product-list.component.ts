@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { ProductFilter, ProductListItem } from 'src/app/models/product.models';
 import { BgsSharedService } from 'src/app/shared/bgs-shared.service';
+import { CartService } from '../../cart/cart.service';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -20,18 +21,18 @@ export class ProductListComponent implements OnInit {
   options: SelectItem[] = [
     {
       value: 1,
-      label: ' Price : Low To High'
+      label: 'Newest Arrivals'
     },
     {
       value: 2,
-      label: 'Price : High To Low'
+      label: ' Price : Low To High'
     },
     {
       value: 3,
-      label: 'Newest Arrivals'
+      label: 'Price : High To Low'
     }
   ];
-  filter: ProductFilter = {pageSize:2, sortOrder: 3};
+  filter: ProductFilter = { pageSize: 2, sortOrder: 1 };
 
   showList: boolean = false;
 
@@ -39,25 +40,24 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private readonly productService: ProductService,
-    private readonly sharedService: BgsSharedService) { }
+    private readonly sharedService: BgsSharedService,
+    private readonly cartService: CartService) { }
 
   ngOnInit(): void {
     this.getProducts();
     this.subscribeSubjet();
-
   }
 
-  changeSortOrder(){
+  changeSortOrder() {
     this.getProducts();
   }
-
 
   changePageSize() {
     this.getProducts();
   }
 
-  loadMore(){
-    this.filter.pageSize +=15;
+  loadMore() {
+    this.filter.pageSize += 15;
     this.getProducts();
   }
 
@@ -76,5 +76,4 @@ export class ProductListComponent implements OnInit {
         this.products = response
       });
   }
-
 }

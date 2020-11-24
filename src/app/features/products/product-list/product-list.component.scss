@@ -1,5 +1,6 @@
 .content-wrapper {
     text-align: center;
+
     .page-size-dropdown-wrapper {
         width: 100px;
         display: inline-block;
@@ -12,11 +13,12 @@
 }
 
 .btn-wrapper {
+    text-align: center;
+    margin-top: 10px;
 
-    width: 300px;
     button {
         background-color: #ff9800e6;
         border: 1px solid #ff9800e6;
-        width: 100%;
+        width: 300px;
     }
 }

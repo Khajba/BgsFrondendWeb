@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/api';
 import { CartItem } from 'src/app/models/product.models';
 import { CartService } from './cart.service';
 

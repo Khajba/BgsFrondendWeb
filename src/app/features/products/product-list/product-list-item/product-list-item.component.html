@@ -1,4 +1,4 @@
-<div class="content-wrapper" routerLink="/products/details">
+<div class="content-wrapper" [routerLink]="['details', product.id]">
     <div class="img-wrapper">
         <img [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl!=null">
     </div>
@@ -13,6 +13,17 @@
         <div class="add-cart-btn-wrapper">
             <button pButton pRipple type="button" label="Add To Cart" (click)="addCartClick($event)"></button>
         </div>
+    </div>
 
+    <div class="add-wishlist" (click)="addWishlistClick($event)" *ngIf="showAddWishlistIcon">
+        <span class="material-icons">
+            favorite_border
+        </span>
+    </div>
+
+    <div class="remove-wishlist" (click)="removeWishlistClick($event)" *ngIf="showRemovewishlistIcon">
+        <span class="material-icons">
+            favorite
+        </span>
     </div>
 </div>

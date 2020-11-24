@@ -1,20 +1,24 @@
 .container {
     display: flex;
-    margin: 15px;
+    padding: 15px;
     .attachments-wrapper {
-        .small-attachment {
-            width: 50px;
-            height: 50px;
+        .small-attachments-wrapper {
             display: inline-block;
-            border: 1px solid black;
-            img {
-                width: 100%;
-                height: 100%;
+
+            .small-attachment {
+                width: 50px;
+                height: 50px;
+                border: 1px solid black;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
             }
         }
         .primary-attachment {
             width: 220px;
-            height: 220px;
+            height: 250px;
             display: inline-block;
             margin-left: 15px;
             border: 1px solid black;
@@ -25,6 +29,7 @@
             }
         }
     }
+
     .details-wrapper {
         flex: 1;
 
@@ -82,9 +87,13 @@
 
     .comment-details {
         margin: 5px;
-        width: 170px;
+        width: 200px;
+
         .avtor {
             margin-bottom: 5px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
         }
     }
 

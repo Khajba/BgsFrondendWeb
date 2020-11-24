@@ -1,3 +1,7 @@
 {
-    "1": "Email or password incorrect"
+    "1": "Email or password incorrect",
+    "2": "Email alrady exists", 
+    "3": "Old Password is incorrect",
+    "4": "Out of stock"
+    
 }

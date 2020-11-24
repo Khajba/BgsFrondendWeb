@@ -13,16 +13,16 @@
         <div class="input-wrapper">
             <span class="p-float-label">
                 <input name="password" id="password" type="text" pInputText [(ngModel)]="user.password" required>
-                <label for="password">Password</label>
+                <label for="password"> {{ 'password' | localize }} </label>
             </span>
         </div>
 
         <div class="btn-wrapper">
-            <button type="submit" pButton pRipple label="Login" (click)="loginClick()"></button>
+            <button type="submit" pButton pRipple label="{{ 'login' | localize }}" (click)="loginClick()"></button>
         </div>
 
         <div class="href-wrapper">
-            <a routerLink="/account/register"> Don't have an account yet? </a>
+            <a routerLink="/account/register"> {{ "don't have an account yet?" | localize }} </a>
         </div>
 
     </div>

@@ -1,44 +1,45 @@
 import { Injectable } from "@angular/core";
 import { map } from 'rxjs/operators';
 import { HttpService } from 'src/app/core/http/http.service';
-import { ChangeUserPassword, UserAddress, UserAttachment, UserDetails, UserPaymentDetails } from 'src/app/models/user-models';
+import { ChangeUserPassword, UserAddress, UserAttachment, UserDetails, UserPaymentDetails, UserWishlist } from 'src/app/models/user-models';
 
-const apiBaseUrl = "http://localhost:56902/api/User"
+const apiBaseUrlUser = "http://localhost:56902/api/User";
+const apiBaseUrlWishlist = "http://localhost:56902/api/wishlist";
 @Injectable()
 export class UserService {
 
     constructor(private readonly httpService: HttpService) { }
 
     getUserDetails() {
-        return this.httpService.get<UserDetails>(`${apiBaseUrl}/getDetails`)
+        return this.httpService.get<UserDetails>(`${apiBaseUrlUser}/getDetails`)
     }
 
     saveUserDetails(userDetails: UserDetails) {
-        return this.httpService.post<UserDetails>(`${apiBaseUrl}/saveDetails`, userDetails, true)
+        return this.httpService.post<UserDetails>(`${apiBaseUrlUser}/saveDetails`, userDetails, true)
     }
 
 
 
     addUserBalance(balance: number) {
-        return this.httpService.post<number>(`${apiBaseUrl}/addUserBalance`, balance, true)
+        return this.httpService.post<number>(`${apiBaseUrlUser}/addBalance`, balance, true)
     }
 
     getUserBalance() {
-        return this.httpService.get<number>(`${apiBaseUrl}/getUserBalance`)
+        return this.httpService.get<number>(`${apiBaseUrlUser}/getBalance`)
     }
 
     getUserAddress() {
-        return this.httpService.get<UserAddress>(`${apiBaseUrl}/getUserAddress`)
+        return this.httpService.get<UserAddress>(`${apiBaseUrlUser}/getUserAddress`)
     }
 
     saveUserAddress(userAddress: UserAddress) {
-        return this.httpService.post<UserAddress>(`${apiBaseUrl}/saveUserAddress`, userAddress, true)
+        return this.httpService.post<UserAddress>(`${apiBaseUrlUser}/saveUserAddress`, userAddress, true)
     }
 
     getUserPaymentDetails() {
-        return this.httpService.get<UserPaymentDetails>(`${apiBaseUrl}/getPaymentDetails`)
+        return this.httpService.get<UserPaymentDetails>(`${apiBaseUrlUser}/getPaymentDetails`)
             .pipe(map(
-                response => {                    
+                response => {
                     const cardNumbers = response.cardNumber.match(/.{1,4}/g);
 
                     response.cardNumber1 = cardNumbers[0];
@@ -56,27 +57,38 @@ export class UserService {
             ...userPayment,
             cardNumber: userPayment.cardNumber1 + userPayment.cardNumber2 + userPayment.cardNumber3 + userPayment.cardNumber4
         }
-        return this.httpService.post<UserPaymentDetails>(`${apiBaseUrl}/savePaymentDetails`, requestParams, true)
+        return this.httpService.post<UserPaymentDetails>(`${apiBaseUrlUser}/savePaymentDetails`, requestParams, true)
     }
 
     getUserAttachment() {
-        return this.httpService.get<UserAttachment>(`${apiBaseUrl}/getUserAttachment`)
+        return this.httpService.get<UserAttachment>(`${apiBaseUrlUser}/getUserAttachment`)
     }
 
     changeUserPassword(password: ChangeUserPassword) {
-        return this.httpService.post<ChangeUserPassword>(`${apiBaseUrl}/changeUserPassword`, password, true)
+        return this.httpService.post<ChangeUserPassword>(`${apiBaseUrlUser}/changeUserPassword`, password, true)
     }
 
-    addUserAttachment( file){
+    addUserAttachment(file) {
         const formData = new FormData();
         formData.append('file', file);
 
-        return this.httpService.post(`${apiBaseUrl}/addUserAttachment`, formData)
+        return this.httpService.post(`${apiBaseUrlUser}/addUserAttachment`, formData)
 
     }
 
-    removeUserAttachment(){
-        return this.httpService.post(`${apiBaseUrl}/removeUserAttachment` )
+    removeUserAttachment() {
+        return this.httpService.post(`${apiBaseUrlUser}/removeUserAttachment`)
+    }
+
+    getWishlistItems() {
+        return this.httpService.get<UserWishlist[]>(`${apiBaseUrlWishlist}/getWishlistItems`)
+    }
+
+    addToWishlist(productId: number) {
+        return this.httpService.post<number>(`${apiBaseUrlWishlist}/addToWishlist`, productId)
+    }
+    removeFromWishlist(productId: number) {
+        return this.httpService.post<number>(`${apiBaseUrlWishlist}/removeFromWishlist`, productId)
     }
 
 

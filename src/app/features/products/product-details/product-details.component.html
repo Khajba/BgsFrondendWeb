@@ -1,8 +1,10 @@
 <div class="container">
 
     <div class="attachments-wrapper">
-        <div class="small-attachment" *ngFor="let attachment of product.attachments">
-            <img [src]="attachment | secure | async" *ngIf="attachment != null">
+        <div class="small-attachments-wrapper">
+            <div class="small-attachment" *ngFor="let attachment of product.attachments">
+                <img [src]="attachment | secure | async" *ngIf="attachment != null">
+            </div>
         </div>
         <div class="primary-attachment">
             <img [src]="product.primaryAttachmentUrl | secure | async" *ngIf="product.primaryAttachmentUrl !=null">
@@ -27,7 +29,7 @@
 </div>
 
 <div class="textarea-wrapper">
-    <textarea placeholder="Write a comment"></textarea>
+    <textarea placeholder="Write a comment" [(ngModel)]="newCommentDescription"></textarea>
 </div>
 
 <div class="btn-wrapper">
@@ -36,8 +38,8 @@
 
 <div class="comment-wrapper" *ngFor="let comment of product.comments">
     <div class="comment-details">
-        <div class="avtor">Writen By: {{comment.avtor}} </div>
-        <div class="date">at: {{comment.createDate}} </div>
+        <div class="avtor"><b> Writen By:</b> {{comment.author}} </div>
+        <div class="date"><b> At: </b> {{ comment.createDate | date : 'dd/MM/yyyy HH:mm:ss'}} </div>
     </div>
     <div class="description"> {{comment.description }}</div>
 </div>

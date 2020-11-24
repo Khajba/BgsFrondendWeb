@@ -9,6 +9,8 @@ import { Categoryservice } from './category-service';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductListItemComponent } from './product-list/product-list-item/product-list-item.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CartService } from '../cart/cart.service';
+import { UserService } from '../user/user.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
   ],
   providers: [
     ProductService,
-    Categoryservice
+    Categoryservice,
+    CartService,
+    UserService
   ]
 })
 export class ProductsModule { }

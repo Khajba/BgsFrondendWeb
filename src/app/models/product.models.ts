@@ -1,3 +1,4 @@
+import { ProductSort } from '../enums/product-sort.order';
 import { CommentModel } from './comment.model';
 
 export interface ProductCategory {
@@ -6,6 +7,7 @@ export interface ProductCategory {
 }
 
 export interface ProductDetails {
+    id?: number;
     name?: string;
     price?: number;
     stock?: number;
@@ -25,7 +27,7 @@ export interface ProductFilter {
     name?: string;
     pageSize?: number;
     pageNumber?: number;
-    sortOrder?: number;
+    sortOrder?: ProductSort;
 }
 
 export interface ProductListItem {
@@ -41,9 +43,10 @@ export interface ProductListItem {
 }
 
 export interface CartItem {
-    primaryAttachmentUrl?:string;
-    name?:string;
-    price?:number;
-    quantity?:number;
+    id?: number;
+    primaryAttachmentUrl?: string;
+    name?: string;
+    price?: number;
+    quantity?: number;
 }
 

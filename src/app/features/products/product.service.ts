@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { HttpService } from 'src/app/core/http/http.service';
 import { Artist, Designer, Mechanic } from 'src/app/models/categories.model';
 import { CommentModel } from 'src/app/models/comment.model';
-import { ProductCategory, ProductFilter, ProductListItem } from 'src/app/models/product.models';
+import { ProductCategory, ProductDetails, ProductFilter, ProductListItem } from 'src/app/models/product.models';
 
 const apiBaseUrl = "http://localhost:56902/api/product"
 
@@ -20,20 +20,25 @@ export class ProductService {
         return this.httpService.get<ProductListItem[]>(`${apiBaseUrl}/getProducts`, filter)
     }
 
-    getProductDetails() {
-        return this.httpService.get(`${apiBaseUrl}/getProductDetails`)
+    getProductDetails(productId: number) {
+        return this.httpService.get<ProductDetails>(`${apiBaseUrl}/getProductDetails`, { productId })
     }
 
-    getProductStock(){
-        return this.httpService.get(`${apiBaseUrl}/getProductStock`)
+    getProductStock(productId: number) {
+        return this.httpService.get(`${apiBaseUrl}/getProductStock`, { productId })
     }
 
-    getProductComments(){
-        return this.httpService.get<CommentModel[]>(`${apiBaseUrl}/getProductComment`)
+    getProductComments(productId: number) {
+        return this.httpService.get<CommentModel[]>(`${apiBaseUrl}/getComments`, { productId })
     }
 
-    addProductComment(description : string){
-        return this.httpService.post<CommentModel>(`${apiBaseUrl}/saveProductCommnet`, {description})
+    addProductComment(description: string, productId: number) {
+        const params = { description, productId }
+        return this.httpService.post<CommentModel>(`${apiBaseUrl}/addComment`, params)
     }
-    
+
+  
+
+
+
 }

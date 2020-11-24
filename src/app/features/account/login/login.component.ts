@@ -11,7 +11,10 @@ import { AuthenticateUserModel } from 'src/app/models/authenticate-user.model';
 })
 export class LoginComponent implements OnInit {
 
-  user: AuthenticateUserModel = {};
+  user: AuthenticateUserModel = {
+    email: 'kurtishvilii@gmail.com',
+    password: '123'
+  };
 
   constructor(
     private readonly authorizationService: AuthorizationService,
