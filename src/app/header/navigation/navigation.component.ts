@@ -19,6 +19,9 @@ export class NavigationComponent implements OnInit {
 
   showNumber: boolean = false;
 
+  number : number =0;
+  
+
   constructor(
     private readonly productService: ProductService,
     private readonly authorizationService: AuthorizationService,
@@ -29,11 +32,11 @@ export class NavigationComponent implements OnInit {
     this.sharedService.showNumber$.subscribe(
       response => {
         this.showNumber = true;
+        this.number++
+        
       }
     )
   }
-
-
 
   searchClick() {
     this.sharedService.productFilter.next(this.filter);

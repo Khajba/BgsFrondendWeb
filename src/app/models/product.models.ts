@@ -40,6 +40,7 @@ export interface ProductListItem {
     artist?: string;
     desigener?: string;
     mechanics?: string;
+    isInWishList?: boolean;
 }
 
 export interface CartItem {
@@ -49,4 +50,3 @@ export interface CartItem {
     price?: number;
     quantity?: number;
 }
-

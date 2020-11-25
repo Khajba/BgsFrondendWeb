@@ -21,7 +21,7 @@
         <div class="total-price">Total:
             <span class="currency">$</span>
             <span class="integer">{{totalPriceInteger}}</span>
-            <span class="decimal">{{totalPriceDecimal}}</span>
+            <span class="decimal">{{totalPriceDecimal | number:'1.0-0'  }}</span>
         </div>
     </div>
 

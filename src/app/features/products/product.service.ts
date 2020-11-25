@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { HttpService } from 'src/app/core/http/http.service';
 import { Artist, Designer, Mechanic } from 'src/app/models/categories.model';
 import { CommentModel } from 'src/app/models/comment.model';
@@ -37,7 +37,10 @@ export class ProductService {
         return this.httpService.post<CommentModel>(`${apiBaseUrl}/addComment`, params)
     }
 
-  
+    getProductCount(filter: ProductFilter) {
+        //return this.httpService.post<number>(`${apiBaseUrl}/getProductCount`, filter)
+        return of(3)
+    }
 
 
 

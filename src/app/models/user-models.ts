@@ -47,8 +47,8 @@ export interface UserAttachment {
 }
 
 export interface UserWishlist {
-    productId?:number;
-    id?:number;
+    productId?: number;
+    id?: number;
     primaryAttachmentUrl?: string;
     name?: string;
     price?: number;

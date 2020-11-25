@@ -11,10 +11,24 @@ export class CartComponent implements OnInit {
 
   cartItems: CartItem[] = [];
 
+ 
+
   constructor(private readonly cartService: CartService) { }
 
   ngOnInit(): void {
     this.getCartItems();
+  }
+
+  placeOrderClick(){
+
+  }
+
+  deleteCartItem(cartItemId: number) {
+    this.cartService.deleteFromCart(cartItemId).subscribe(
+      response => {
+        this.getCartItems();
+      }
+    )
   }
 
   private getCartItems() {

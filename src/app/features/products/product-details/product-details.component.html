@@ -1,8 +1,8 @@
 <div class="container">
 
     <div class="attachments-wrapper">
-        <div class="small-attachments-wrapper">
-            <div class="small-attachment" *ngFor="let attachment of product.attachments">
+        <div class="small-attachments-wrapper" >
+            <div class="small-attachment" *ngFor="let attachment of product.attachments" (click)="changePrimaryAttachment(attachment)">
                 <img [src]="attachment | secure | async" *ngIf="attachment != null">
             </div>
         </div>
@@ -21,7 +21,7 @@
         <div class="stock" *ngIf="5 >=product.stock ">Only {{product.stock}} left in stock - order soon</div>
         <div class="cart">
             <button pButton pRipple type="submit" label="Add To Cart" class="cart-btn" icon="pi pi-shopping-cart"
-                (click)="cartClick()"></button>
+                (click)="cartClick()"  ></button>
         </div>
 
     </div>

@@ -18,6 +18,12 @@ export class ProductListComponent implements OnInit {
     { value: 3, label: '3' }
   ]
 
+  productsCount: number;
+
+  get lastPageNumber(): number {
+    return Math.floor(this.productsCount / this.filter.pageSize)-1
+  }
+
   options: SelectItem[] = [
     {
       value: 1,
@@ -32,7 +38,7 @@ export class ProductListComponent implements OnInit {
       label: 'Price : High To Low'
     }
   ];
-  filter: ProductFilter = { pageSize: 2, sortOrder: 1 };
+  filter: ProductFilter = { pageSize: 1, sortOrder: 1, pageNumber: 0 };
 
   showList: boolean = false;
 
@@ -44,36 +50,51 @@ export class ProductListComponent implements OnInit {
     private readonly cartService: CartService) { }
 
   ngOnInit(): void {
-    this.getProducts();
+    this.getProducts(false);
+    this.getProductsCount();
     this.subscribeSubjet();
   }
 
   changeSortOrder() {
-    this.getProducts();
+    this.getProducts(false);
   }
 
   changePageSize() {
-    this.getProducts();
+    this.getProducts(false);
   }
 
   loadMore() {
-    this.filter.pageSize += 15;
-    this.getProducts();
+    this.filter.pageNumber++;
+    this.getProducts(true);
+  }
+
+  private getProductsCount() {
+    this.productService.getProductCount(this.filter).subscribe(
+      response => {
+        this.productsCount = response;
+      }
+    )
   }
 
   private subscribeSubjet() {
     this.sharedService.productFilter$.subscribe(
       filter => {
         this.filter = { ...this.filter, ...filter }
-        this.getProducts();
+
+        this.getProducts(false);
+        this.getProductsCount();
       }
     )
   }
 
-  private getProducts() {
+  private getProducts(isLoadMore: boolean) {
     this.productService.getProducts(this.filter).subscribe(
       response => {
-        this.products = response
+        if (isLoadMore) {
+          this.products.push(...response)
+        } else {
+          this.products = response;
+        }
       });
   }
 }

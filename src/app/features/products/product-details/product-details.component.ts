@@ -31,6 +31,10 @@ export class ProductDetailsComponent implements OnInit {
     this.getProductDetails();
   }
 
+  changePrimaryAttachment(attachment){
+    this.product.primaryAttachmentUrl=attachment;
+  }
+
   addCommentClick() {
     this.addProductComment();
   }
@@ -39,8 +43,10 @@ export class ProductDetailsComponent implements OnInit {
     this.showNumber = true;
     this.bgsSharedservice.showNumber.next(this.showNumber);
     this.addToCart(this.product.id);
-
+    
   }
+
+  
 
   private addToCart(productId: number) {
     this.cartService.addToCart(productId).subscribe(

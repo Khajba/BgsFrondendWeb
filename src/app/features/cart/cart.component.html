@@ -1,1 +1,9 @@
-<app-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem"> </app-cart-item>
+<app-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem" (onDelete)="deleteCartItem($event)"  > </app-cart-item>
+
+<div class="order-btn-wrapper" *ngIf="cartItems.length" >
+    <button pButton pRipple type="button" label="Place Order"  (click)="placeOrderClick()">
+        <span class="material-icons">
+            payment
+            </span>
+    </button>
+</div>

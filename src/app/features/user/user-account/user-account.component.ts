@@ -156,7 +156,7 @@ export class UserAccountComponent implements OnInit {
   private getUserBalance() {
     this.userService.getUserBalance().subscribe(
       resposne => {
-        this.balance = resposne;
+        this.userDetails.balance = resposne;
       }
     )
   }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { CartItem } from 'src/app/models/product.models';
 import { BgsSharedService } from 'src/app/shared/bgs-shared.service';
@@ -12,6 +12,11 @@ export class CartItemComponent implements OnInit {
 
   @Input()
   cartItem: CartItem = {};
+
+  @Output()
+  onDelete: EventEmitter<number> = new EventEmitter()
+
+
 
   quantities: SelectItem[] = []
 
@@ -52,7 +57,7 @@ export class CartItemComponent implements OnInit {
   }
 
   removeClick() {
-
+    this.onDelete.next(this.cartItem.id)
   }
 
   private initQuantitiesDropdown() {

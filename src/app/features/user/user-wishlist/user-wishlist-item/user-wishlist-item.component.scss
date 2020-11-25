@@ -1,13 +1,16 @@
 .container {
-    padding: 15px;
+    padding: 20px;
+    display: inline-block;
 
     .img-wrapper {
-        width: 220px;
+        width: 230px;
         height: 250px;
         border: 1px solid black;
         cursor: pointer;
         background-color: #f4f1f1;
         position: relative;
+        
+        
 
         img{
             width: 100%;
