@@ -15,6 +15,7 @@ import { HttpErrorHandlerInterceptor } from './core/http/http-error-handler.inte
 import { NavigationComponent } from './header/navigation/navigation.component';
 import { LanguageComponent } from './header/language/language.component';
 import { UserProfileComponent } from './header/user-profile/user-profile.component';
+import { CartService } from './features/cart/cart.service';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { UserProfileComponent } from './header/user-profile/user-profile.compone
       multi: true
     },
     MessageService,
-    ProductService
+    ProductService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

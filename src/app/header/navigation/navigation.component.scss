@@ -56,12 +56,13 @@
             }
             .number {
                 position: absolute;
-                top: 10px;
-                left: 13px;
+                top: -1px;
+                right: 13px;
                 background-color: red;
                 color: white;
-                width: 13px;
+                width: 14px;
                 text-align: center;
+                border-radius: 45%;
             }
         }
 

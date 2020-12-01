@@ -2,6 +2,7 @@
     width: 300px;
     float: right;
     padding: 5px 15px;
+
     button {
         background-color: #ff9800e6;
         border: 1px solid #ff9800e6;
@@ -9,4 +10,11 @@
         color: black;
         font-weight: bold;
     }
+}
+
+.total {
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 5px 15px;
 }

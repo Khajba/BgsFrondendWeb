@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { CartItem } from 'src/app/models/product.models';
 import { BgsSharedService } from 'src/app/shared/bgs-shared.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -16,11 +17,11 @@ export class CartItemComponent implements OnInit {
   @Output()
   onDelete: EventEmitter<number> = new EventEmitter()
 
-
-
   quantities: SelectItem[] = []
 
-  constructor(private readonly bgsSharedService: BgsSharedService) { }
+  constructor(
+    private readonly bgsSharedService: BgsSharedService,
+    private readonly cartService: CartService) { }
 
   ngOnInit(): void {
     this.initQuantitiesDropdown();
@@ -57,7 +58,16 @@ export class CartItemComponent implements OnInit {
   }
 
   removeClick() {
-    this.onDelete.next(this.cartItem.id)
+    this.onDelete.next(this.cartItem.id);
+    this.bgsSharedService.cartUpdated.next()
+  }
+
+  changeQuantity() {
+    this.cartService.updateCartItemQuantity(this.cartItem.id, this.cartItem.quantity).subscribe(
+      response => {
+
+      }
+    )
   }
 
   private initQuantitiesDropdown() {

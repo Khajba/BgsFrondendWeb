@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="img-wrapper">
-        <img [src]="attachment.attachmentUrl | secure | async">
+        <img [src]="userDetails.avatarUrl" *ngIf="userDetails.avatarUrl" >
         <div class="hover-wrapper">
             <button pButton pRipple type="button" label="Upload New" name="upload" class="p-button-info upload-btn"
                 icon="pi pi-upload" (click)="uploadClick()"></button>

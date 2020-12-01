@@ -17,6 +17,4 @@ export class AccountService {
     login(user: AuthenticateUserModel){
         return this.httpService.get<AuthUserModel>(`${apiBaseUrl}/login`, user)
     }
-
-    
 }

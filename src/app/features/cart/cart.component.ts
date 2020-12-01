@@ -11,16 +11,25 @@ export class CartComponent implements OnInit {
 
   cartItems: CartItem[] = [];
 
- 
+  get totalAmount() {
+    return this.cartItems.reduce((prev, curr) => prev + curr.price * curr.quantity, 0);
+  }
 
   constructor(private readonly cartService: CartService) { }
 
   ngOnInit(): void {
     this.getCartItems();
+
   }
 
-  placeOrderClick(){
 
+
+  placeOrderClick() {
+    this.cartService.placeOrder().subscribe(
+      response => {
+
+      }
+    )
   }
 
   deleteCartItem(cartItemId: number) {
@@ -34,7 +43,7 @@ export class CartComponent implements OnInit {
   private getCartItems() {
     this.cartService.getCartItems().subscribe(
       response => {
-        this.cartItems = response
+        this.cartItems = response;
       }
     )
   }

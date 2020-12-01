@@ -41,7 +41,7 @@ export class ProductDetailsComponent implements OnInit {
 
   cartClick() {
     this.showNumber = true;
-    this.bgsSharedservice.showNumber.next(this.showNumber);
+    this.bgsSharedservice.cartUpdated.next(this.showNumber);
     this.addToCart(this.product.id);
     
   }

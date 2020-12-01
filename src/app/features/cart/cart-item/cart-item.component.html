@@ -12,7 +12,7 @@
         </div>
         <div class="quantity-wrapper">
             <div class="quantity">Quantity: </div>
-            <p-dropdown class="dropdown" [options]="quantities" [(ngModel)]="cartItem.quantity"></p-dropdown>
+            <p-dropdown class="dropdown" [options]="quantities" [(ngModel)]="cartItem.quantity" (ngModelChange)="changeQuantity()" ></p-dropdown>
         </div>
     </div>
 

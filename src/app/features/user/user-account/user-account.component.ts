@@ -46,7 +46,6 @@ export class UserAccountComponent implements OnInit {
     this.getUserAddress();
     this.getUserPaymentDetails();
     this.getUserBalance();
-    this.getUserAttachmnet();
   }
 
   changePassword() {
@@ -61,16 +60,16 @@ export class UserAccountComponent implements OnInit {
   }
 
   uploadAttachemnts(event: any) {
-    this.userService.addUserAttachment(event.files[0]).subscribe(
+    this.userService.uploadUserAvatar(event.files[0]).subscribe(
       response => {
-        this.getUserAttachmnet();
+        this.userDetails.avatarUrl = response.avatarUrl;
         this.displayUploadDialog = false;
       }
     )
   }
 
   removeClick() {
-    this.removeAttachment();
+    this.removeAvatar();
   }
 
   balanceClick() {
@@ -79,6 +78,7 @@ export class UserAccountComponent implements OnInit {
 
   addBalance() {
     this.addUserBalanace();
+    this.displayBalanceDialog = false;
   }
 
   changePasswordClick() {
@@ -97,21 +97,15 @@ export class UserAccountComponent implements OnInit {
     this.saveUserPaymentDetails();
   }
 
-  private removeAttachment() {
-    this.userService.removeUserAttachment().subscribe(
+  private removeAvatar() {
+    this.userService.removeAvatar().subscribe(
       response => {
-        this.attachment = null;
+        this.userDetails.avatarUrl = 'https://image.flaticon.com/icons/png/512/21/21294.png';
       }
     )
   }
 
-  private getUserAttachmnet() {
-    this.userService.getUserAttachment().subscribe(
-      response => {
-        this.attachment = response
-      }
-    )
-  }
+
 
   private getUserPaymentDetails() {
     this.userService.getUserPaymentDetails().subscribe(
@@ -124,7 +118,7 @@ export class UserAccountComponent implements OnInit {
   saveUserPaymentDetails() {
     this.userService.saveUserPaymentDetails(this.userPayment).subscribe(
       response => {
-
+       
       }
     )
   }
@@ -182,6 +176,7 @@ export class UserAccountComponent implements OnInit {
     this.userService.getUserDetails().subscribe(
       respnse => {
         this.userDetails = respnse;
+        this.userDetails.avatarUrl = 'https://image.flaticon.com/icons/png/512/21/21294.png'
       }
     )
   }

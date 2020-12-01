@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { AuthorizationService } from 'src/app/core/authorization/authorization-service';
+import { CartService } from 'src/app/features/cart/cart.service';
 import { ProductService } from 'src/app/features/products/product.service';
 import { ProductFilter } from 'src/app/models/product.models';
 import { BgsSharedService } from 'src/app/shared/bgs-shared.service';
@@ -17,23 +18,27 @@ export class NavigationComponent implements OnInit {
 
   filter: ProductFilter = {};
 
-  showNumber: boolean = false;
-
-  number : number =0;
-  
+  cartItemCount: number = 0;
 
   constructor(
     private readonly productService: ProductService,
-    private readonly authorizationService: AuthorizationService,
-    private readonly sharedService: BgsSharedService) { }
+    private readonly sharedService: BgsSharedService,
+    private readonly cartService: CartService) { }
 
   ngOnInit(): void {
     this.getProdcutCategories();
-    this.sharedService.showNumber$.subscribe(
+    this.getCartItemsCount();
+    this.sharedService.cartUpdated$.subscribe(
       response => {
-        this.showNumber = true;
-        this.number++
-        
+        this.getCartItemsCount();
+      }
+    )
+  }
+
+  private getCartItemsCount() {
+    this.cartService.getCartItemsCount().subscribe(
+      response => {
+        this.cartItemCount = response;
       }
     )
   }

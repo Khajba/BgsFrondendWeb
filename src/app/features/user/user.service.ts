@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { map } from 'rxjs/operators';
 import { HttpService } from 'src/app/core/http/http.service';
-import { ChangeUserPassword, UserAddress, UserAttachment, UserDetails, UserPaymentDetails, UserWishlist } from 'src/app/models/user-models';
+import { ChangeUserPassword, UploadUserAvatarResponseModel, UserAddress, UserAttachment, UserDetails, UserPaymentDetails, UserWishlist } from 'src/app/models/user-models';
 
 const apiBaseUrlUser = "http://localhost:56902/api/User";
 const apiBaseUrlWishlist = "http://localhost:56902/api/wishlist";
@@ -60,24 +60,18 @@ export class UserService {
         return this.httpService.post<UserPaymentDetails>(`${apiBaseUrlUser}/savePaymentDetails`, requestParams, true)
     }
 
-    getUserAttachment() {
-        return this.httpService.get<UserAttachment>(`${apiBaseUrlUser}/getUserAttachment`)
+    uploadUserAvatar(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        return this.httpService.post<UploadUserAvatarResponseModel>(`${apiBaseUrlUser}/uploadUserAvatar`, formData, true)
     }
 
     changeUserPassword(password: ChangeUserPassword) {
         return this.httpService.post<ChangeUserPassword>(`${apiBaseUrlUser}/changeUserPassword`, password, true)
     }
 
-    addUserAttachment(file) {
-        const formData = new FormData();
-        formData.append('file', file);
-
-        return this.httpService.post(`${apiBaseUrlUser}/addUserAttachment`, formData)
-
-    }
-
-    removeUserAttachment() {
-        return this.httpService.post(`${apiBaseUrlUser}/removeUserAttachment`)
+    removeAvatar() {
+        return this.httpService.post(`${apiBaseUrlUser}/removeAvatar`)
     }
 
     getWishlistItems() {

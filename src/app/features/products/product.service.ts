@@ -37,9 +37,9 @@ export class ProductService {
         return this.httpService.post<CommentModel>(`${apiBaseUrl}/addComment`, params)
     }
 
-    getProductCount(filter: ProductFilter) {
-        //return this.httpService.post<number>(`${apiBaseUrl}/getProductCount`, filter)
-        return of(3)
+    getProductsCount(filter: ProductFilter) {
+        return this.httpService.get<number>(`${apiBaseUrl}/getProductsCount`, filter)
+       
     }
 
 

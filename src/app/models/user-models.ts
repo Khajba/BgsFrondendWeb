@@ -1,8 +1,11 @@
+import { OrderStatus } from '../enums/order.status.enum';
+
 export interface UserDetails {
     pinCode?: string;
     firstname?: string;
     lastname?: string;
     balance?: number;
+    avatarUrl?: string;
 }
 
 export interface ChangeUserPassword {
@@ -36,9 +39,11 @@ export interface UserPaymentDetails {
 
 export interface UserOrderItem {
     orderNumber?: string;
-    OrderDate?: Date;
+    date?: string;
     totalAmount?: number;
-    orderStatus?: string;
+    statusId?: OrderStatus;
+    status?: string;
+    statusDate?: string;
 }
 
 export interface UserAttachment {
@@ -52,4 +57,8 @@ export interface UserWishlist {
     primaryAttachmentUrl?: string;
     name?: string;
     price?: number;
+}
+
+export interface UploadUserAvatarResponseModel {
+    avatarUrl?: string;
 }

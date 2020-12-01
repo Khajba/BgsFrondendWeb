@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
   productsCount: number;
 
   get lastPageNumber(): number {
-    return Math.floor(this.productsCount / this.filter.pageSize)-1
+    return Math.ceil(this.productsCount / this.filter.pageSize)-1
   }
 
   options: SelectItem[] = [
@@ -38,7 +38,7 @@ export class ProductListComponent implements OnInit {
       label: 'Price : High To Low'
     }
   ];
-  filter: ProductFilter = { pageSize: 1, sortOrder: 1, pageNumber: 0 };
+  filter: ProductFilter = { pageSize: 3, sortOrder: 1, pageNumber: 0 };
 
   showList: boolean = false;
 
@@ -60,6 +60,7 @@ export class ProductListComponent implements OnInit {
   }
 
   changePageSize() {
+    this.filter.pageNumber = 0;
     this.getProducts(false);
   }
 
@@ -69,7 +70,7 @@ export class ProductListComponent implements OnInit {
   }
 
   private getProductsCount() {
-    this.productService.getProductCount(this.filter).subscribe(
+    this.productService.getProductsCount(this.filter).subscribe(
       response => {
         this.productsCount = response;
       }
